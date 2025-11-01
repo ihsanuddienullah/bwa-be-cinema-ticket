@@ -15,6 +15,10 @@ const connectToDatabase = async () => {
   dbConn.on('open', () => {
     console.log('Database connected successfully on ', DATABASE_URL)
   })
+
+  dbConn.on('error', (err) => {
+    console.log('Database error', err)
+  })
 }
 
 export default connectToDatabase
