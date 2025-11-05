@@ -105,3 +105,31 @@ export const deleteGenre = async (req: Request, res: Response) => {
     })
   }
 }
+
+export const getGenreById = async (req: Request, res: Response) => {
+  try {
+    const genreId = req.params.id
+
+    const genre = await GenreModel.findById(genreId)
+
+    if (!genre) {
+      return res.status(404).json({
+        status: 'failed',
+        message: 'Genre not found',
+      })
+    }
+
+    return res.status(200).json({
+      status: 'success',
+      message: 'Success get genre by id',
+      data: genre,
+    })
+  } catch (error) {
+    console.log(error)
+
+    return res.status(500).json({
+      status: 'failed',
+      message: 'Internal Server Error',
+    })
+  }
+}
