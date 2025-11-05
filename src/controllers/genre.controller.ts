@@ -19,3 +19,28 @@ export const getAllGenres = async (req: Request, res: Response) => {
     })
   }
 }
+
+export const createGenre = async (req: Request, res: Response) => {
+  try {
+    const body = req.body
+
+    const genre = new GenreModel({
+      name: body.name,
+    })
+
+    await genre.save()
+
+    return res.status(201).json({
+      status: 'success',
+      message: 'Genre created successfully',
+      data: genre,
+    })
+  } catch (error) {
+    console.log(error)
+
+    return res.status(500).json({
+      status: 'failed',
+      message: 'Internal Server Error',
+    })
+  }
+}

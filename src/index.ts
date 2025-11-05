@@ -1,4 +1,5 @@
 import express from 'express'
+import bodyParser from 'body-parser'
 import { config } from 'dotenv'
 import connectToDatabase from '@/utils/database'
 import adminRoutes from './routes/admin-routes'
@@ -9,6 +10,8 @@ const port = 3000
 config()
 
 connectToDatabase()
+
+app.use(bodyParser.json())
 
 app.use((req, _, next) => {
   console.log(`${req.method} ${req.originalUrl}`)
