@@ -1,6 +1,7 @@
 import express from 'express'
 import {
   createGenre,
+  deleteGenre,
   getAllGenres,
   updateGenre,
 } from '@/controllers/genre.controller'
@@ -12,5 +13,6 @@ const genreRoutes = express.Router()
 genreRoutes.get('/genres', getAllGenres)
 genreRoutes.post('/genres', validateRequest(createGenreSchema), createGenre)
 genreRoutes.put('/genres/:id', validateRequest(createGenreSchema), updateGenre)
+genreRoutes.delete('/genres/:id', deleteGenre)
 
 export default genreRoutes
