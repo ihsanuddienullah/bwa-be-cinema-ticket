@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { GenreModel } from '@/models'
 
-export const getAllGenres = async (req: Request, res: Response) => {
+export const getAllGenres = async (_: Request, res: Response) => {
   try {
     const genres = await GenreModel.find()
 
