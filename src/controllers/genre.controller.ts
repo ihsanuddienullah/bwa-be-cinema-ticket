@@ -30,7 +30,7 @@ export const createGenre = async (req: Request, res: Response) => {
 
     await genre.save()
 
-    return res.status(201).json({
+    return res.status(200).json({
       status: 'success',
       message: 'Genre created successfully',
       data: genre,

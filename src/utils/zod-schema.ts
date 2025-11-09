@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const createGenreSchema = z
+export const genreSchema = z
   .object({
     name: z.string().min(1, 'Name is required'),
   })
