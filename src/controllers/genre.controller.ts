@@ -47,7 +47,7 @@ export const createGenre = async (req: Request, res: Response) => {
 
 export const updateGenre = async (req: Request, res: Response) => {
   try {
-    const genreId = req.params.id
+    const genreId = req.params.genreId
     const body = req.body
 
     const genre = await GenreModel.findByIdAndUpdate(
@@ -80,7 +80,7 @@ export const updateGenre = async (req: Request, res: Response) => {
 
 export const deleteGenre = async (req: Request, res: Response) => {
   try {
-    const genreId = req.params.id
+    const genreId = req.params.genreId
 
     const genre = await GenreModel.findByIdAndDelete(genreId)
 
@@ -108,7 +108,7 @@ export const deleteGenre = async (req: Request, res: Response) => {
 
 export const getGenreById = async (req: Request, res: Response) => {
   try {
-    const genreId = req.params.id
+    const genreId = req.params.genreId
 
     const genre = await GenreModel.findById(genreId)
 

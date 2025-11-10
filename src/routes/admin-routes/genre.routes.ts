@@ -13,8 +13,8 @@ const genreRoutes = express.Router()
 
 genreRoutes.get('/genres', getAllGenres)
 genreRoutes.post('/genres', validateRequest(genreSchema), createGenre)
-genreRoutes.put('/genres/:id', validateRequest(genreSchema), updateGenre)
-genreRoutes.delete('/genres/:id', deleteGenre)
-genreRoutes.get('/genres/:id', getGenreById)
+genreRoutes.put('/genres/:genreId', validateRequest(genreSchema), updateGenre)
+genreRoutes.delete('/genres/:genreId', deleteGenre)
+genreRoutes.get('/genres/:genreId', getGenreById)
 
 export default genreRoutes
