@@ -1,4 +1,5 @@
 import GenreModel from './genre.model'
+import MovieModel from './movie.model'
 import TheaterModel from './theater.model'
 
-export { GenreModel, TheaterModel }
+export { GenreModel, MovieModel, TheaterModel }
