@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import { getThumbnailUrl } from '@/utils/helper'
+import { GenreModel, TheaterModel } from '.'
 
 const movieSchema = new mongoose.Schema(
   {
@@ -54,5 +55,37 @@ const movieSchema = new mongoose.Schema(
     },
   }
 )
+
+movieSchema.post('save', async (doc) => {
+  if (doc) {
+    for (const genre of doc.genres) {
+      await GenreModel.findByIdAndUpdate(genre, {
+        $push: { movies: doc._id },
+      })
+    }
+
+    for (const theater of doc.theaters) {
+      await TheaterModel.findByIdAndUpdate(theater, {
+        $push: { movies: doc._id },
+      })
+    }
+  }
+})
+
+movieSchema.post('findOneAndDelete', async (doc) => {
+  if (doc) {
+    for (const genre of doc.genres) {
+      await GenreModel.findByIdAndUpdate(genre, {
+        $pull: { movies: doc._id },
+      })
+    }
+
+    for (const theater of doc.theaters) {
+      await TheaterModel.findByIdAndUpdate(theater, {
+        $pull: { movies: doc._id },
+      })
+    }
+  }
+})
 
 export default mongoose.model('Movie', movieSchema, 'movies')
