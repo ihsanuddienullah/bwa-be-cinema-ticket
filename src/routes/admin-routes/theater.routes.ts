@@ -7,5 +7,10 @@ const theaterRoutes = express.Router()
 
 theaterRoutes.get('/theaters', getAllTheaters)
 theaterRoutes.post('/theaters', validateRequest(theaterSchema), createTheater)
+theaterRoutes.put(
+  '/theaters/:theaterId',
+  validateRequest(theaterSchema),
+  createTheater
+)
 
 export default theaterRoutes
