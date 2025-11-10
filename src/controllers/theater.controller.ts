@@ -20,6 +20,34 @@ export const getAllTheaters = async (_: Request, res: Response) => {
   }
 }
 
+export const getTheaterById = async (req: Request, res: Response) => {
+  try {
+    const theaterId = req.params.theaterId
+
+    const theater = await TheaterModel.findById(theaterId)
+
+    if (!theater) {
+      return res.status(404).json({
+        status: 'failed',
+        message: 'Theater not found',
+      })
+    }
+
+    return res.status(200).json({
+      status: 'success',
+      message: 'Success get theater by id',
+      data: theater,
+    })
+  } catch (error) {
+    console.log(error)
+
+    return res.status(500).json({
+      status: 'failed',
+      message: 'Internal Server Error',
+    })
+  }
+}
+
 export const createTheater = async (req: Request, res: Response) => {
   try {
     const body = req.body
