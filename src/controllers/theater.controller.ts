@@ -78,3 +78,30 @@ export const updateTheater = async (req: Request, res: Response) => {
     })
   }
 }
+
+export const deleteTheater = async (req: Request, res: Response) => {
+  try {
+    const theaterId = req.params.theaterId
+
+    const theater = await TheaterModel.findByIdAndDelete(theaterId)
+
+    if (!theater) {
+      return res.status(404).json({
+        status: 'failed',
+        message: 'Theater not found',
+      })
+    }
+
+    return res.status(200).json({
+      status: 'success',
+      message: 'Theater deleted successfully',
+    })
+  } catch (error) {
+    console.log(error)
+
+    return res.status(500).json({
+      status: 'failed',
+      message: 'Internal Server Error',
+    })
+  }
+}
