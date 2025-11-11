@@ -12,6 +12,7 @@ config()
 connectToDatabase()
 
 app.use(bodyParser.json())
+app.use(express.static('public'))
 
 app.use((req, _, next) => {
   console.log(`${req.method} ${req.originalUrl}`)
